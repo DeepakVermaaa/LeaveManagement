@@ -1,0 +1,24 @@
+﻿@model LeaveManagement.Models.User
+
+<h2>Edit User</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="Username" class="form-control" value="@Model.Username" required>
+    </div>
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" name="Role" class="form-control" required>
+            <option value="Employee" selected="@(Model.Role == "Employee")">Employee</option>
+            <option value="Admin" selected="@(Model.Role == "Admin")">Admin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" class="form-control" value="@Model.Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top:20px">Save Changes</button>
+    <a asp-action="Users" class="btn btn-secondary" style="margin-top:20px">Cancel</a>
+</form>

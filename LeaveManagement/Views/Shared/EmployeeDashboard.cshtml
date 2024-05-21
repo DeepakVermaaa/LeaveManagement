@@ -1,0 +1,64 @@
+﻿@model LeaveManagement.Models.EmployeeDashboardViewModel
+
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+	<div class="alert alert-success alert-dismissible fade show" style="margin-top:20px" role="alert">
+		@TempData["SuccessMessage"]
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+	<div class="alert alert-danger alert-dismissible fade show" style="margin-top:20px" role="alert">
+		@TempData["ErrorMessage"]
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+
+<h2>Welcome to Your Dashboard, @Model.Username!</h2>
+
+<div>
+	<h3>Your Leave Requests:</h3>
+	<p>Requested Leaves: @Model.RequestedLeavesCount</p>
+	<p>Approved Leaves: @Model.ApprovedLeavesCount</p>
+	<p>Rejected Leaves: @Model.RejectedLeavesCount</p>
+</div>
+
+<div class="card mt-4">
+	<div class="card-body">
+		<h3 class="card-title">Request Leave</h3>
+		<form asp-controller="LeaveManagement" asp-action="RequestLeave" method="post">
+			<input type="hidden" name="username" value="@Model.Username" />
+			<div class="form-group">
+				<label for="leaveType">Leave Type:</label>
+				<select class="form-control" id="leaveType" name="leaveType">
+					<option value="Paid">Paid</option>
+					<option value="Sick">Sick</option>
+					<option value="Vacation">Vacation</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="startDate">Start Date:</label>
+				<input type="date" class="form-control" id="startDate" name="startDate">
+			</div>
+			<div class="form-group">
+				<label for="endDate">End Date:</label>
+				<input type="date" class="form-control" id="endDate" name="endDate">
+			</div>
+			<div class="form-group">
+				<label for="reason">Reason:</label>
+				<textarea class="form-control" id="reason" name="reason"></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary" style="margin-top:20px">Submit Request</button>
+		</form>
+	</div>
+</div>
+<div class="mt-4">
+	<a href="@Url.Action("Register", "UserRegistration")" class="btn btn-secondary" style="display: inline-block; margin-right: 20px;">Back to Register</a>
+	<a href="@Url.Action("Welcome", "Welcome")" class="btn btn-secondary" style="display: inline-block; margin-right: 20px;">Back to Welcome Page</a>
+	<a href="@Url.Action("ManageProfile", "UserRegistration", new { username = Model.Username })" class="btn btn-primary" style="display: inline-block;">Manage Profile</a>
+</div>
+
+
+<link rel="stylesheet" href="./css/EmployeeDashboardStyles.css" asp-append-version="true">

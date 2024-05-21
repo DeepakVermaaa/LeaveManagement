@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .role-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .role-button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .role-button:hover {
+                background-color: #0056b3;
+            }
+
+        .registration-link {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            text-decoration: none;
+        }
+
+            .registration-link:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Leave Management System</h1>
+        <div class="role-buttons">
+            <a asp-controller="Admin" asp-action="Users" class="role-button">Admin</a>
+            <a asp-controller="UserRegistration" asp-action="Register" class="role-button">Employee</a>
+        </div>
+        <p>Please select your role to proceed.</p>
+    </div>
+</body>
+</html>

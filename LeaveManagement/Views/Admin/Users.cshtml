@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LeaveManagement.Models.User>
+
+<h2>Admin Dashboard</h2>
+<hr />
+<h2>Manage Users</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td>@user.Role</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Create User</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="Username" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="role">Role:</label>
+        <select id="role" name="Role" class="form-control" required>
+            <option value="Employee">Employee</option>
+            <option value="Admin">Admin</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-top: 20px; margin-right: 30px;">Create User</button>
+    <a asp-action="LeaveRequests" class="btn btn-info" style="margin-top: 20px; margin-right: 30px;">View Leave Requests</a>
+    <a asp-action="LeaveLimits" class="btn btn-info" style="margin-top: 20px; margin-right: 30px;">Manage Leave Limits</a>
+    <a href="@Url.Action("Welcome", "Welcome")" class="btn btn-secondary" style="margin-top:20px">Back to Welcome Page</a>
+</form>
